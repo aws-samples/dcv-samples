@@ -1,11 +1,10 @@
-## My Project
+## NICE DCV Samples
 
-TODO: Fill this README out!
+Welcome to the DCV Samples repository within [AWS Samples](https://github.com/aws-samples). This repository will be used to host samples for NICE DCV integrated workloads. These workloads include managed services that leverage DCV, such as [Amazon WorkSpaces](https://aws.amazon.com/workspaces/all-inclusive/) uses [WSP](https://docs.aws.amazon.com/workspaces/latest/adminguide/amazon-workspaces-protocols.html). 
 
-Be sure to:
-
-* Change the title in this README
-* Edit your repository description on GitHub
+### Glossary 
+- DCV/WSP Usage Reports 
+- DCV EC2 Image Builder Components
 
 ## Security
 
