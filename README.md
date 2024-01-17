@@ -6,6 +6,13 @@ Welcome to the DCV Samples repository within [AWS Samples](https://github.com/aw
 - DCV/WSP Usage Reports 
 
 ### Overview
+
+#### Bootstrap 
+The provided script bootstraps a DCV Connection Gateway to install and configure the gateway component. This can be injected with [Amazon EC2 user data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) or by running the script locally with `sudo`.
+
+#### Session Resolver
+The provided script provides logic to run in a AWS Lambda function to resolver DCV sessions streaming through a DCV Connection Gateway. 
+
 #### DCV/WSP Usage Reports 
 The provided scripts to generate DCV usage reports on Windows illustrate how to use DCV calls to find when a user starts and ends their session. This allows administrators to generate granular usage reports that can be further modified to include additional information. For a walkthrough of how to implement these reports on a WSP Amazon WorkSpace, see this [blog post](https://aws.amazon.com/blogs/desktop-and-application-streaming/generate-custom-usage-reports-for-amazon-workspaces/).
 
