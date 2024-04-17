@@ -10,7 +10,9 @@ Welcome to the DCV Samples repository within [AWS Samples](https://github.com/aw
 ### Overview
 
 #### Bootstrap 
-The provided script bootstraps a DCV Connection Gateway to install and configure the gateway component. This can be injected with [Amazon EC2 user data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) or by running the script locally with `sudo`.
+The provided script (`dcv-gateway-installer.sh`) bootstraps the installation and configuration of the DCV Connection Gateway component. This can be injected with [Amazon EC2 user data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) or by running the script locally with `sudo`. To read more about the DCV Connection Gateway, see the [DCV Connection Gateway Administrator Guide](https://docs.aws.amazon.com/dcv/latest/gw-admin/what-is-gw.html).
+
+The provided script (`dcv-session-manager-installer.sh`) bootstraps the installation and configuration of the DCV Session Manager component. This can be injected with [Amazon EC2 user data](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) or by running the script locally with `sudo`. To read more about DCV Session Manager, see the [DCV Session Manager Administrator Guide](https://docs.aws.amazon.com/dcv/latest/sm-admin/what-is-sm.html).
 
 #### Session Resolver
 The provided script provides logic to run in a AWS Lambda function to resolver DCV sessions streaming through a DCV Connection Gateway.  To learn more, see the [Build a serverless session resolver for your NICE DCV Connection Gateway](https://aws.amazon.com/blogs/desktop-and-application-streaming/build-a-serverless-session-resolver-for-your-nice-dcv-connection-gateway/) AWS blog post.
