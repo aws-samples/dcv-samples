@@ -1,0 +1,24 @@
+{                        
+    "comment": "NOTE: BEFORE DEPLOYING SESSION MANAGER AND CONNECTION GATEWAY STACK, UPDATE THE ACCOUNT ID AND REGION BELOW",
+    "accountId": "xxxxxxxxxxxx",
+    "region": "xx-xxxx-x",
+    "sshKeypairName": "",
+    "kmsKeyName": "aws/ebs",
+    "network" : {
+        "vpcId": "",
+        "publicASubnetId": "",
+        "publicBSubnetId": "",
+        "privateASubnetId": "",
+        "privateBSubnetId": ""
+    },
+    "sessionMgr" : {
+        "baseAmiId": "ami-xxxxxxxxxxxxxxxxx",
+        "comment": "NOTE: BEFORE DEPLOYING INFRA STACK AND AFTER DEPLOYING THE SESSION MANAGER & CONNECTION GATEWAY STACK, UPDATE THE AMI ID BELOW",
+        "builderAmiId": "ami-xxxxxxxxxxxxxxxxx"
+    },
+    "connectionGwy" : {
+        "baseAmiId": "ami-xxxxxxxxxxxxxxxxx",
+        "comment": "NOTE: BEFORE DEPLOYING INFRA STACK AND AFTER DEPLOYING THE SESSION MANAGER & CONNECTION GATEWAY STACK, UPDATE THE AMI ID BELOW",
+        "builderAmiId": "ami-xxxxxxxxxxxxxxxxx"
+    }
+}

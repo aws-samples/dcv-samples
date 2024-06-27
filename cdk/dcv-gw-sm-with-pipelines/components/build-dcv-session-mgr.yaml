@@ -1,0 +1,70 @@
+name: DCVSessMgrInstallBuildDocument
+description: This is a build document for NICE DCV Session Manager installation.
+schemaVersion: 1.0
+phases:
+  - name: build
+    steps:
+      - name: UpdateOS
+        action: UpdateOS
+        timeoutSeconds: -1
+        onFailure: Continue
+        maxAttempts: 3
+        inputs:
+          exclude:
+            - amazon-ssm-agent
+      - name: CreateLogFile
+        action: CreateFile
+        inputs:
+          - path: /var/log/dcv-session-mgr-install.log
+            content: 
+            overwrite: true
+      - name: CreateTempFolder
+        action: CreateFolder
+        inputs:
+          - path: /tmp/DCVSM/
+      - name: DownloadDCVSessMgr
+        action: WebDownload
+        maxAttempts: 3
+        inputs:
+          - source: https://raw.githubusercontent.com/aws-samples/dcv-samples/main/bootstrap/dcv-session-manager-installer.sh
+            destination: /tmp/DCVSM/
+      - name: InstallDCVSessMgr
+        action: ExecuteBash
+        inputs:
+          commands:
+            # Set the installation log and current directory
+            - LOG_PATH="/var/log/dcv-session-mgr-install.log"
+            - echo $(date -u) "Starting NICE DCV Session Manager installation..." | tee -a $LOG_PATH
+            # Install the broker package
+            - chmod +x /tmp/DCVSM/dcv-session-manager-installer.sh
+            - /bin/bash /tmp/DCVSM/dcv-session-manager-installer.sh
+      - name: ConfigureDCVSessMgr
+        action: ExecuteBash
+        inputs:
+          commands:
+            - LOG_PATH="/var/log/dcv-session-mgr-install.log"
+            - echo $(date -u) "Configuring DCV Session Manager..." | tee -a $LOG_PATH
+            - CONFIG_PATH="/etc/dcv-session-manager-broker/session-manager-broker.properties"
+            # Get the current region so we know where to put cert content secret
+            - |
+              TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"`
+            - |
+              REGION=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/placement/region)
+            # Enable the gateway in config
+            - sed -i '/^enable-gateway/s/=.*$/= true/' $CONFIG_PATH
+            # Uncomment the broker connector host and port in config
+            - sed -i '/gateway-to-broker-connector-https-port/s/^#\s//g' $CONFIG_PATH
+            - sed -i '/gateway-to-broker-connector-bind-host/s/^#\s//g' $CONFIG_PATH
+            # Enable the broker to persist on DynamoDB in config
+            - sed -i '/^enable-persistence/s/=.*$/= true/' $CONFIG_PATH
+            # Uncomment database, region, Read Capacity Units(RCU), Write Capacity Units(WCU), and table name prefix in config
+            - sed -i '/persistence-db/s/^#\s//g' $CONFIG_PATH
+            - sed -i '/dynamodb-region/s/^#\s//g' $CONFIG_PATH
+            - sed -i '/dynamodb-table-rcu/s/^#\s//g' $CONFIG_PATH
+            - sed -i '/dynamodb-table-wcu/s/^#\s//g' $CONFIG_PATH
+            - sed -i '/dynamodb-table-name-prefix/s/^#\s//g' $CONFIG_PATH
+            # Be sure the region is correct and not the default in the file
+            - sed -i "/^dynamodb-region/s/=.*$/= $REGION/" $CONFIG_PATH
+            # Restart the broker service 
+            - systemctl restart dcv-session-manager-broker.service
+            - echo $(date -u) "DCV Session Manager Installation and Configuration complete..." | tee -a $LOG_PATH

@@ -1,0 +1,20 @@
+{                        
+    "comment": "NOTE: BEFORE DEPLOYING SESSION MANAGER AND CONNECTION GATEWAY STACK, UPDATE THE ACCOUNT ID AND REGION BELOW",
+    "accountId": "xxxxxxxxxxxx",
+    "region": "xx-xxxx-x",
+    "sshKeypairName": "",
+    "kmsKeyName": "aws/ebs",
+    "network" : {
+        "vpcId": "",
+        "publicASubnetId": "",
+        "publicBSubnetId": "",
+        "privateASubnetId": "",
+        "privateBSubnetId": ""
+    },
+    "sessionMgr" : {
+        "baseAmiId": "ami-xxxxxxxxxxxxxxxxx"
+    },
+    "connectionGwy" : {
+        "baseAmiId": "ami-xxxxxxxxxxxxxxxxx"
+    }
+}

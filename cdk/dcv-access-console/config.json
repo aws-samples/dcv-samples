@@ -1,0 +1,21 @@
+{                        
+    "comment": "NOTE: BEFORE DEPLOYING SESSION MANAGER AND CONNECTION GATEWAY STACK, UPDATE THE ACCOUNT ID AND REGION BELOW",
+    "accountId": "xxxxxxxxxxxxx",
+    "region": "xx-xxxx-x",
+    "sshKeypairName": "",
+    "kmsKeyName": "aws/ebs",
+    "network" : {
+        "vpcId": "vpc-xxxxxxxxxxxxxxxxx",
+        "accessConsoleSubnetId": "subnet-xxxxxxxxxxxxxxxxx",
+        "subnetAZ": "xx-xxxx-xx"
+    },
+    "accessConsole" : {
+        "amiId": "",
+        "sessionMgrDns": "https://PRIVATE-BROKER-DNS",
+        "smClientId": "",
+        "smClientPsw": "",
+        "adminUser": "ec2-user",
+        "gatewayDns": "",
+        "inboundAccess": "0.0.0.0/0"
+    }
+}

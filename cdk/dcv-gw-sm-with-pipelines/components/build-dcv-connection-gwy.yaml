@@ -1,0 +1,42 @@
+name: DCVConnGatewayInstallBuildDocument
+description: This is a build document for NICE DCV Connection Gateway installation.
+schemaVersion: 1.0
+phases:
+  - name: build
+    steps:
+      - name: UpdateOS
+        action: UpdateOS
+        timeoutSeconds: -1
+        onFailure: Continue
+        maxAttempts: 3
+        inputs:
+          exclude:
+            - amazon-ssm-agent
+      - name: CreateLogFile
+        action: CreateFile
+        inputs:
+          - path: /var/log/dcv-connection-gwy-install.log
+            content: 
+            overwrite: true
+      - name: CreateTempFolder
+        action: CreateFolder
+        inputs:
+          - path: /tmp/DCVGW/
+      - name: DownloadDCVConnGateway
+        action: WebDownload
+        maxAttempts: 3
+        inputs:
+          - source: https://raw.githubusercontent.com/aws-samples/dcv-samples/main/bootstrap/dcv-gateway-installer.sh
+            destination: /tmp/DCVGW/
+      - name: InstallDCVConnGateway
+        action: ExecuteBash
+        inputs:
+          commands:
+            - set -eE
+            - LOG_PATH="/var/log/dcv-connection-gwy-install.log"
+            - echo $(date -u) "Starting NICE DCV Connection Gateway installation..." | tee -a $LOG_PATH
+            - cd /tmp/DCVGW/
+            - echo $(date -u) "Installing Connection Gateway package..." | tee -a $LOG_PATH
+            - chmod +x dcv-gateway-installer.sh
+            - sudo /bin/bash /tmp/DCVGW/dcv-gateway-installer.sh
+            - echo $(date -u) "Installed Connection Gateway package..." | tee -a $LOG_PATH
