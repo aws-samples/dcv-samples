@@ -3,16 +3,16 @@
 This folder contains sample DCV deployments using the [AWS Cloud Development Kit](https://aws.amazon.com/cdk/) (AWS CDK). These samples are intended to be used so you quickly deploy a DCV environment. The code samples may be modified to meet you requirements. 
 
 ## Glossary 
-- dcv-gw-sm-without-pipelines
-- dcv-gw-sm-with-pipelines
-- dcv-sm-access-console
+- [dcv-gw-sm-without-pipelines](./dcv-gw-sm-without-pipelines/README.md)
+- [dcv-gw-sm-with-pipelines](./dcv-gw-sm-with-pipelines/README.md)
+- [dcv-sm-access-console](./dcv-access-console/README.md)
 
 ## Overview
 
 ### dcv-gw-sm-without-pipelines 
 This AWS CDK sample provisions the foundational infrastructure for a [DCV Connection Gateway](https://docs.aws.amazon.com/dcv/latest/gw-admin/what-is-gw.html) with [DCV Session Manager](https://docs.aws.amazon.com/dcv/latest/sm-admin/what-is-sm.html) environment. Both DCV Session Manager and DCV Connection Gateway are configured with bootstrap scripts so that can you utilize base AMIs. This deployment is intended to be deployed with Amazon Linux 2, but you can also deploy using other supported operating systems. 
 
-![Without Pipelines Architecture](./dcv-gw-sm-without-pipelines/documentation/images/SolutionArchitecture.PNG) 
+![Without Pipelines Architecture](./dcv-gw-sm-without-pipelines/documentation/images/SolutionArchitecture.png)
 
 ### dcv-gw-sm-with-pipelines
 This AWS CDK sample provisions the foundational infrastructure for a [DCV Connection Gateway](https://docs.aws.amazon.com/dcv/latest/gw-admin/what-is-gw.html) with [DCV Session Manager](https://docs.aws.amazon.com/dcv/latest/sm-admin/what-is-sm.html) environment. Both DCV Session Manager and DCV Connection Gateway have EC2 Image Builder pipelines to publish a configured AMI. This deployment is intended to be deployed with ARM-based Amazon Linux 2, but you can also deploy using other supported operating systems. 

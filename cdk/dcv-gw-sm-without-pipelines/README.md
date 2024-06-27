@@ -6,7 +6,7 @@ Accelerate cloud deployment of foundational autoscaling infrastructure for [NICE
 The architecture diagram below illustrates the resources that this sample deploys into your account. This CDK deploys a single DCV Session Manager, a DCV Connection Gateway Auto Scaling group, an AWS Network Load Balancer forwarding traffic to the gateways, the required IAM roles for the architecture (gateway, broker, and DCV server), and configured Security Groups. The CDK provides the choice of deploying in an existing VPC or creating a new one. 
 >Note: A DCV server fleet is not automatically deployed with this CDK. Instructions for deploying your DCV server fleet are within **Step 17: Testing Your Configuration**.
 
-![Figure1: Architecture](./documentation/images/SolutionArchitecture.PNG) 
+![Figure1: Architecture](.//documentation/images/SolutionArchitecture.png) 
 
 
 Figure 1: AWS CDK that will setup the foundational infrastructure for a scale out solution of NICE DCV Connection Gateway and Session Manager.
@@ -263,7 +263,7 @@ unzip nice-dcv-session-manager-cli.zip
 ```
 
 3. Configure the CLI ```dcvsmcli.conf``` file. See the [CLI guide](https://docs.aws.amazon.com/dcv/latest/sm-cli/configuration-file.html) for a reference. You will need to have the following configuration set. 
-```json
+```bash
 
 [output]
 # The formatting style for command output.
