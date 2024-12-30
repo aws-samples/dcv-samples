@@ -1,6 +1,6 @@
 # Amazon DCV Samples
 
-Welcome to the DCV Samples repository within [AWS Samples](https://github.com/aws-samples). This repository will be used to host samples for NICE DCV integrated workloads. These workloads include managed services that leverage DCV, such as [Amazon WorkSpaces](https://aws.amazon.com/workspaces/all-inclusive/) that stream with [WSP](https://docs.aws.amazon.com/workspaces/latest/adminguide/amazon-workspaces-protocols.html). 
+Welcome to the DCV Samples repository within [AWS Samples](https://github.com/aws-samples). This repository will be used to host samples for Amazon DCV integrated workloads. These workloads include managed services that leverage DCV, such as [Amazon WorkSpaces](https://aws.amazon.com/workspaces/all-inclusive/) that stream with [WSP](https://docs.aws.amazon.com/workspaces/latest/adminguide/amazon-workspaces-protocols.html). 
 
 ## Glossary 
 - [Bootstrap](./bootstrap/)
