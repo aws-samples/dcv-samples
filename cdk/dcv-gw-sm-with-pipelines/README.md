@@ -1,13 +1,13 @@
-# Scale Out Deployment of NICE DCV Connection Gateway, Sessions Manager, and Broker
+# Scale Out Deployment of Amazon DCV Connection Gateway, Sessions Manager, and Broker
 
-Accelerate cloud deployment of foundational autoscaling infrastructure for [NICE DCV](https://aws.amazon.com/hpc/dcv/) with AWS Cloud Development Kit (AWS CDK). AWS CDK will create EC2 Image builder pipelines to create images to run DCV components on Amazon Elastic Compute Cloud (Amazon EC2).
+Accelerate cloud deployment of foundational autoscaling infrastructure for [Amazon DCV](https://aws.amazon.com/hpc/dcv/) with AWS Cloud Development Kit (AWS CDK). AWS CDK will create EC2 Image builder pipelines to create images to run DCV components on Amazon Elastic Compute Cloud (Amazon EC2).
 
 ## Overview
 The architecture diagram below depicts the resources that this solution will deploy into your account.
 >Note: A DCV fleet will need to be spun up in conjunction with this solution. For testing this solution, one will be created near the end of the procedure below.
 
 ![Figure1: Architecture](./documentation/images/SolutionArchitecture.PNG) 
-Figure 1: AWS CDK that will setup the image build process and foundational infrastructure for a scale out solution of NICE DCV Connection Gateway and Session Manager.
+Figure 1: AWS CDK that will setup the image build process and foundational infrastructure for a scale out solution of Amazon DCV Connection Gateway and Session Manager.
 
 ## Prerequisites
 - An AWS account with full permissions on:

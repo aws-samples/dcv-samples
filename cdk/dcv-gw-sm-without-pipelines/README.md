@@ -1,6 +1,6 @@
-# Deployment of NICE DCV Connection Gateway and DCV Sessions Manager broker
+# Deployment of Amazon DCV Connection Gateway and DCV Sessions Manager broker
 
-Accelerate cloud deployment of foundational autoscaling infrastructure for [NICE DCV](https://aws.amazon.com/hpc/dcv/) with AWS Cloud Development Kit (AWS CDK). 
+Accelerate cloud deployment of foundational autoscaling infrastructure for [Amazon DCV](https://aws.amazon.com/hpc/dcv/) with AWS Cloud Development Kit (AWS CDK). 
 
 ## Overview
 The architecture diagram below illustrates the resources that this sample deploys into your account. This CDK deploys a single DCV Session Manager, a DCV Connection Gateway Auto Scaling group, an AWS Network Load Balancer forwarding traffic to the gateways, the required IAM roles for the architecture (gateway, broker, and DCV server), and configured Security Groups. The CDK provides the choice of deploying in an existing VPC or creating a new one. 
@@ -9,7 +9,7 @@ The architecture diagram below illustrates the resources that this sample deploy
 ![Figure1: Architecture](.//documentation/images/SolutionArchitecture.png) 
 
 
-Figure 1: AWS CDK that will setup the foundational infrastructure for a scale out solution of NICE DCV Connection Gateway and Session Manager.
+Figure 1: AWS CDK that will setup the foundational infrastructure for a scale out solution of Amazon DCV Connection Gateway and Session Manager.
 
 ## Prerequisites
 - An AWS account with full permissions on:

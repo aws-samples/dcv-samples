@@ -1,6 +1,6 @@
-# NICE DCV Access Console Deployment
+# Amazon DCV Access Console Deployment
 
-Accelerate [NICE DCV Access Console](https://docs.aws.amazon.com/dcv/latest/access-console/what-is-access-console.html) deployments with the AWS Cloud Development Kit (AWS CDK). This CDK will create a single Amazon Elastic Compute Cloud (Amazon EC2) instance to host all of the required DCV Access Console components.
+Accelerate [Amazon DCV Access Console](https://docs.aws.amazon.com/dcv/latest/access-console/what-is-access-console.html) deployments with the AWS Cloud Development Kit (AWS CDK). This CDK will create a single Amazon Elastic Compute Cloud (Amazon EC2) instance to host all of the required DCV Access Console components.
 
 ## Overview
 The architecture diagram below depicts the resources that this solution will deploy into your account. This CDK will only deploy the DCV Access Console. An existing DCV Session Manager environment is required. The DCV Connection Gateway in the diagram is optional.
@@ -239,7 +239,7 @@ cdk deploy
 ```
 
 ## Step 17: Testing your Configuration
-After your deployment is finished, the CDK the output the URL of your DCV Access Console. Once the underlying EC2 instance is passing health checks, you can access the DCV Access Console through this URL. For usage instructions, see *Getting started with the NICE DCV Session Manager console* in the [DCV Access Console Administrator Guide](https://docs.aws.amazon.com/dcv/latest/access-console/getting-started.html)
+After your deployment is finished, the CDK the output the URL of your DCV Access Console. Once the underlying EC2 instance is passing health checks, you can access the DCV Access Console through this URL. For usage instructions, see *Getting started with the Amazon DCV Session Manager console* in the [DCV Access Console Administrator Guide](https://docs.aws.amazon.com/dcv/latest/access-console/getting-started.html)
 
 ## Cleanup your Environment
 To destroy all infrastructure contained in the CDK, run the following command:
