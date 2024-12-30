@@ -15,18 +15,18 @@ OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 .SYNOPSIS
-    This script is intended to generate usage reports for WSP Amazon WorkSpaces.
+    This script is intended to generate usage reports for DCV Amazon WorkSpaces.
 .DESCRIPTION
-    A secheduled task should be pushed via Group Policy that will invoke the local script every minute
+    A scheduled task should be pushed via Group Policy that will invoke the local script every minute
     on a WSP WorkSpace. The script will create a CSV for each day and records hostname, sessions start time, 
-    session end time, username, and total session duration. These reports can be further analized by ingesting 
+    session end time, username, and total session duration. These reports can be further analyzed by ingesting 
     into a visualization logging mechanism. To deploy this task, it is recommended to use a Group Policy Object,
     as WorkSpaces require AD DS. Alternatively, the scheduled task can be created locally.
 .EXAMPLE
-    Scheduled task arguement to execute local script. Path can be modified to your script location.
-        -noprofile -ExecutionPolicy Unrestricted -file "C:\Program Files\Amazon\Build-WSPUsageReports.ps1"
-    Scheduled task arguement to execute local script with a provided path. The path must exist locally.
-        -noprofile -ExecutionPolicy Unrestricted -file "C:\Program Files\Amazon\Build-WSPUsageReports.ps1" -usageReportsFolder "C:\path"
+    Scheduled task argument to execute local script. Path can be modified to your script location.
+        -noprofile -ExecutionPolicy Unrestricted -file "C:\Program Files\Amazon\Build-DCVUsageReports.ps1"
+    Scheduled task argument to execute local script with a provided path. The path must exist locally.
+        -noprofile -ExecutionPolicy Unrestricted -file "C:\Program Files\Amazon\Build-DCVUsageReports.ps1" -usageReportsFolder "C:\path"
 #>
 [CmdletBinding()]
 Param (
@@ -37,11 +37,11 @@ Param (
 $today = Get-Date
 $reportId = $today.Month.ToString() + "-" + $today.Day.ToString() + "-" + $today.Year.ToString()
 if($usageReportsFolder -eq ''){
-    $usageReportsFolder = "C:\Windows\Temp\WSPUsageReports"
+    $usageReportsFolder = "C:\Windows\Temp\DCVUsageReports"
 }else{
     if(-not(Test-Path -Path $usageReportsFolder)){ 
         write-host "Provided path not found. Reverting to default path."
-        $usageReportsFolder = "C:\Windows\Temp\WSPUsageReports"
+        $usageReportsFolder = "C:\Windows\Temp\DCVUsageReports"
     }
 }
 $outfile = "$usageReportsFolder\$reportId.csv"
