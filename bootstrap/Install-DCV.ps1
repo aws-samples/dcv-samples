@@ -23,12 +23,21 @@ if(($OSVersion -eq "2016") -and (($InstanceType[0] -ne 'g') -or ($InstanceType[0
 }
 $token = Invoke-RestMethod -Headers @{"X-aws-ec2-metadata-token-ttl-seconds" = "21600"} -Method PUT -Uri http://169.254.169.254/latest/api/token
 $instanceType = Invoke-RestMethod -Headers @{"X-aws-ec2-metadata-token" = $token} -Method GET -Uri http://169.254.169.254/latest/meta-data/instance-type
+# Check and install Visual C++ prerequisite
+$InstalledSoftware = (Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*) | Where-Object {$_.DisplayName -like "Microsoft Visual C++ 2022*"}
+if($InstalledSoftware.count -eq 0){
+    Start-Job -Name VcWebReq -ScriptBlock { Invoke-WebRequest -uri https://aka.ms/vs/17/release/vc_redist.x64.exe -OutFile C:\Windows\Temp\vc_redist_64.exe }  
+    Wait-Job -Name VcWebReq
+    Invoke-Command -ScriptBlock { . C:\Windows\Temp\vc_redist_64.exe /install /passive /norestart }
+}
+# Download Package(s)
 if($VirtualDisplayDriverRequired){
     Start-Job -Name WebReq -ScriptBlock { Invoke-WebRequest -uri https://d1uj6qtbmh3dt5.cloudfront.net/nice-dcv-virtual-display-x64-Release.msi -OutFile C:\Windows\Temp\DCVDisplayDriver.msi ; Invoke-WebRequest -uri https://d1uj6qtbmh3dt5.cloudfront.net/nice-dcv-server-x64-Release.msi -OutFile C:\Windows\Temp\DCVServer.msi }  
 }else{
     Start-Job -Name WebReq -ScriptBlock { Invoke-WebRequest -uri https://d1uj6qtbmh3dt5.cloudfront.net/nice-dcv-server-x64-Release.msi -OutFile C:\Windows\Temp\DCVServer.msi }  
 }
 Wait-Job -Name WebReq
+# Install Package(s)
 if($VirtualDisplayDriverRequired){
     Invoke-Command -ScriptBlock {Start-Process "msiexec.exe" -ArgumentList "/I C:\Windows\Temp\DCVDisplayDriver.msi /quiet /norestart" -Wait}
 }
