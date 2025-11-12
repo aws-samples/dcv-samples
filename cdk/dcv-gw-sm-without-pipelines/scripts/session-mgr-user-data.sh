@@ -31,21 +31,25 @@ case $system in
             package_type="el7"
             package_manager="yum"
             package_extension="rpm"
+        elif [ "$major_version" = 2023 ]; then
+            package_type="amzn2023"
+            package_manager="yum"
+            package_extension="rpm"
         fi
         ;;
     centos|rhel )
-        if [[ "$major_version" =~ ^(7|8|9) ]]; then
+        if [[ "$major_version" =~ ^(8|9) ]]; then
             package_type="el$major_version"
             if [[ "$major_version" =~ ^(8|9) ]]; then
               package_manager="dnf"
             else
               package_manager="yum"
             fi
-            package_extension="rpm"      
+            package_extension="rpm"
         fi
         ;;
     ubuntu )
-        if [ "$major_version" = 22 ] || [ "$major_version" = 20 ]; then
+        if [ "$major_version" = 22 ] || [ "$major_version" = 24 ]; then
             package_type="ubuntu$(echo $version | tr -d '.')"
             package_manager="apt"
             package_extension="deb"

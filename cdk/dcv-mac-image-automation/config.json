@@ -1,0 +1,78 @@
+{
+  "ec2": {
+    "ami_id": "ami-1234567890abcdef0",
+    "dcv_server_build_location": "https://d1uj6qtbmh3dt5.cloudfront.net/nice-dcv-server-macos-arm64.dist.pkg",
+    "instance_type": "mac2-m2pro.metal",
+    "key_name": "KeyPairPlaceholder",
+    "ec2_user_password": "SecurePasswd12!",
+    "automatic_ec2-user_dcv_session_creation": true,
+    "placement": {
+      "tenancy": "host",
+      "host_id": "h-XXXXXXXXXXX",
+      "availability_zone": "xx-xxxx-xx"
+    },
+    "tags": {
+      "Name": "DCVMacAutomationInstance",
+      "Purpose": "DCV-Mac-Automated-Image-Creation",
+      "CreatedBy": "StepFunction",
+      "Environment": "Development"
+    },
+    "security_group": {
+      "ssh_access": false,
+      "ssh_cidr": "0.0.0.0/0",
+      "additional_ports": []
+    }
+  },
+  "mac_monitoring": {
+    "polling_interval_minutes": 5,
+    "max_polling_attempts": 60,
+    "task_filters": {
+      "task-type": "sip-modification",
+      "task-state": ["successful", "failed", "in-progress", "pending"]
+    },
+    "timeout_hours": 5
+  },
+  "ami": {
+    "naming_pattern": "dcv-mac-automation-ami-{instance_id}-{timestamp}",
+    "description_pattern": "DCV Mac Automated AMI created from instance {instance_id} on {timestamp}",
+    "no_reboot": true,
+    "tags": {
+      "CreatedBy": "DCVMacAutomationStepFunction",
+      "Purpose": "DCVMacAutomatedImageCreation"
+    },
+    "options": {
+      "stop_instance_before_creation": false,
+      "wait_for_completion": false,
+      "terminate_instance_after_creation": false
+    }
+  },
+  "infrastructure": {
+    "vpc": {
+      "cidr": "10.0.0.0/16"
+    },
+    "timeouts": {
+      "instance_launch_minutes": 5,
+      "instance_running_wait_minutes": 15,
+      "ami_creation_minutes": 60,
+      "step_function_hours": 3
+    }
+  },
+  "step_function": {
+    "wait_after_launch_minutes": 15,
+    "log_level": "ALL",
+    "name": "DCVMacImageAutomationStateMachine"
+  },
+  "ssm": {
+    "working_directory": "/tmp",
+    "timeout_seconds": 300,
+    "max_retries": 5
+  },
+  "lambda": {
+    "runtime": "python3.11",
+    "timeout_minutes": 5,
+    "memory_mb": 256,
+    "environment_variables": {
+      "LOG_LEVEL": "INFO"
+    }
+  }
+}

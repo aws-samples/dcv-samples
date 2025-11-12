@@ -3,11 +3,15 @@
 This folder contains sample DCV deployments using the [AWS Cloud Development Kit](https://aws.amazon.com/cdk/) (AWS CDK). These samples are intended to be used so you quickly deploy a DCV environment. The code samples may be modified to meet you requirements. 
 
 ## Glossary 
+- [dcv-mac-image-automation](./dcv-mac-image-automation/README.md)
 - [dcv-gw-sm-without-pipelines](./dcv-gw-sm-without-pipelines/README.md)
 - [dcv-gw-sm-with-pipelines](./dcv-gw-sm-with-pipelines/README.md)
 - [dcv-sm-access-console](./dcv-access-console/README.md)
 
 ## Overview
+
+### dcv-mac-image-automation
+This AWS CDK sample provides an automated workflow using Step Functions to create custom AMIs for EC2 Mac instances with Amazon DCV server pre-installed. The automation handles the complete lifecycle including launching a Mac instance, managing System Integrity Protection (SIP) modifications, installing and configuring DCV server via SSM commands, and creating a ready-to-use AMI. The workflow is fully configurable through a central `config.json` file and supports flexible deployment options including optional instance stopping before AMI creation and automatic cleanup. For more information, see the associated [README](./dcv-mac-image-automation/README.md).
 
 ### dcv-gw-sm-without-pipelines 
 This AWS CDK sample provisions the foundational infrastructure for a [DCV Connection Gateway](https://docs.aws.amazon.com/dcv/latest/gw-admin/what-is-gw.html) with [DCV Session Manager](https://docs.aws.amazon.com/dcv/latest/sm-admin/what-is-sm.html) environment. Both DCV Session Manager and DCV Connection Gateway are configured with bootstrap scripts so that can you utilize base AMIs. This deployment is intended to be deployed with Amazon Linux 2, but you can also deploy using other supported operating systems. For more information, see the associated [README](./dcv-gw-sm-without-pipelines/README.md).

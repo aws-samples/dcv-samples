@@ -32,10 +32,14 @@ case $system in
             package_type="el7"
             package_manager="yum"
             package_extension="rpm"
+        elif [ "$major_version" = 2023 ]; then
+            package_type="amzn2023"
+            package_manager="yum"
+            package_extension="rpm"
         fi
         ;;
     centos|rhel )
-        if [[ "$major_version" =~ ^(7|8|9) ]]; then
+        if [[ "$major_version" =~ ^(8|9) ]]; then
             package_type="el$major_version"
             if [[ "$major_version" =~ ^(8|9) ]]; then
               package_manager="dnf"
@@ -46,7 +50,7 @@ case $system in
         fi
         ;;
     ubuntu )
-        if [ "$major_version" = 22 ] || [ "$major_version" = 20 ]; then
+        if [ "$major_version" = 22 ] || [ "$major_version" = 24 ]; then
             package_type="ubuntu$(echo $version | tr -d '.')"
             package_manager="apt"
             package_extension="deb"
@@ -116,7 +120,7 @@ BROKER_PRIVATE_DNS=$(aws ssm get-parameter --name dcv-broker-private-dns --regio
 timeout 1 bash -c "/dev/tcp/$BROKER_PRIVATE_DNS/8447"
 RESPONSE="$?"
 while [ "$RESPONSE" != 0 ]; do
-    echo $(date -u) "Unable to reach broker. Waiting before retry." | tee -a "$LOG_PATH"
+    echo $(date -u) "Unable to reach broker at $BROKER_PRIVATE_DNS. Waiting before retry." | tee -a "$LOG_PATH"
     sleep 15s
     BROKER_PRIVATE_DNS=$(aws ssm get-parameter --name dcv-broker-private-dns --region "$REGION" --with-decryption | grep -Po '"Value": "\K[^"]*')
     timeout 1 bash -c "cat < /dev/null > /dev/tcp/$BROKER_PRIVATE_DNS/8447"
