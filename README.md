@@ -26,6 +26,7 @@ The provided script `linux-config-sessionmgr-agent.sh` bootstraps the configurat
 This folder contains several [AWS Cloud Development Kit](https://aws.amazon.com/cdk/) (AWS CDK) examples for deploying DCV workloads as IaaC. For an overview of the current CDK examples, see the [README](/cdk/README.md) in the cdk folder.
 
 **Current CDK Examples**
+- Deploy an EC2 Mac image automation pipeline using AWS Step Functions
 - Deploy a DCV Session Manager and DCV Connection Gateway environment
 - Deploy a DCV Session Manager and DCV Connection Gateway environment with EC2 Image Builder pipelines for both components
 - Deploy DCV Access Console
