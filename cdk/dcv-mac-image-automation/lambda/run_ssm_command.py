@@ -90,13 +90,13 @@ if [ "$sip_status" = "Enabled" ]; then
     exit 1
 fi
 
-# Check if OS version starts with 13, 14, or 15
+# Check if OS version starts with 13, 14, 15, or 26
 case "$os_version" in
-    13*|14*|15*)
+    13*|14*|15*|26*)
         echo "OS version $os_version is supported"
         ;;
     *)
-        echo "Unsupported OS version: $os_version. This script supports macOS 13, 14, and 15 only."
+        echo "Unsupported OS version: $os_version. This script supports macOS 13, 14, 15, and 26 only."
         exit 1
         ;;
 esac
